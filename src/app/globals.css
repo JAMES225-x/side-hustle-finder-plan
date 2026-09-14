@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Brand: "Kita Green" — growth, income, trust */
+  --color-brand-50: #effaf4;
+  --color-brand-100: #d8f3e4;
+  --color-brand-200: #b3e6cb;
+  --color-brand-300: #80d3a9;
+  --color-brand-400: #4bb982;
+  --color-brand-500: #279e67;
+  --color-brand-600: #188052;
+  --color-brand-700: #136743;
+  --color-brand-800: #115338;
+  --color-brand-900: #0e442f;
+  --color-brand-950: #06241b;
+
+  /* Accent: "Araw Gold" — the PH sun, optimism */
+  --color-araw-300: #fcd34d;
+  --color-araw-400: #fbbf24;
+  --color-araw-500: #f59e0b;
+  --color-araw-600: #d97706;
+
+  --color-ink-50: #f6f7f8;
+  --color-ink-100: #eceef0;
+  --color-ink-200: #d9dce0;
+  --color-ink-300: #b7bec7;
+  --color-ink-400: #8d97a3;
+  --color-ink-500: #6c7684;
+  --color-ink-600: #565f6c;
+  --color-ink-700: #464e5a;
+  --color-ink-800: #3d434d;
+  --color-ink-900: #23272d;
+  --color-ink-950: #14171b;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+* {
+  min-width: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--color-ink-50);
+  background-image: radial-gradient(
+    circle at 50% -20%,
+    var(--color-brand-50) 0%,
+    transparent 55%
+  );
+  background-attachment: fixed;
+}
+
+select {
+  text-overflow: ellipsis;
+}
+
+::selection {
+  background: var(--color-brand-200);
+  color: var(--color-brand-950);
+}
+
+/* Scrollable chip rails without visible scrollbars */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Micro-motion */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-pop-in {
+  animation: pop-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-pop-in {
+    animation: none;
+  }
+}
+
+/* Surface hierarchy */
+.surface {
+  background: #ffffff;
+  border: 1px solid var(--color-ink-100);
+  box-shadow:
+    0 1px 2px rgba(20, 23, 27, 0.04),
+    0 8px 24px -12px rgba(20, 23, 27, 0.08);
+}
+
+.surface-hover {
+  transition:
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.2s;
+}
+
+.surface-hover:active {
+  transform: scale(0.985);
+  border-color: var(--color-ink-200);
+}
+
+/* Number emphasis */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
