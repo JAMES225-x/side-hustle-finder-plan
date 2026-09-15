@@ -152,15 +152,21 @@ export const incomeLogs = pgTable("income_logs", {
 });
 
 // --- Scam Shield ---
-export const scamRegistry = pgTable("scam_registry", {
-  id: serial("id").primaryKey(),
-  entityName: text("entity_name").notNull(),
-  aliases: text("aliases").array().notNull().default([]),
-  riskLevel: scamRiskLevelEnum("risk_level").notNull().default("medium"),
-  source: text("source").notNull().default("community"),
-  notes: text("notes"),
-  lastVerifiedAt: timestamp("last_verified_at", { withTimezone: true }).defaultNow().notNull(),
-});
+export const scamRegistry = pgTable(
+  "scam_registry",
+  {
+    id: serial("id").primaryKey(),
+    entityName: text("entity_name").notNull(),
+    aliases: text("aliases").array().notNull().default([]),
+    riskLevel: scamRiskLevelEnum("risk_level").notNull().default("medium"),
+    source: text("source").notNull().default("community"),
+    notes: text("notes"),
+    lastVerifiedAt: timestamp("last_verified_at", { withTimezone: true }).defaultNow().notNull(),
+  },
+  (t) => ({
+    entityNameUnique: uniqueIndex("scam_registry_entity_name_unique").on(t.entityName),
+  })
+);
 
 export const scamReports = pgTable("scam_reports", {
   id: serial("id").primaryKey(),
